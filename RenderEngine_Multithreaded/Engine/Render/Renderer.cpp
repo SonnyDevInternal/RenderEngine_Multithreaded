@@ -24,7 +24,8 @@ void Plane<Width, Height>::DrawLine(int x1, int y1, int x2, int y2, Colour clr) 
     int sy = (y1 < y2) ? 1 : -1;
     int err = dx - dy;
 
-    while (true) {
+    while (true) 
+    {
         this->SetPixel(x1, y1, clr);
 
         if (x1 == x2 && y1 == y2) break;
@@ -41,7 +42,8 @@ void Plane<Width, Height>::DrawLine(int x, int y, int w, int h, int width, Colou
 
     std::vector<std::future<void>> futures;
 
-    for (int i = 0; i < maxThreads; ++i) {
+    for (int i = 0; i < maxThreads; ++i) 
+    {
         int start = i * threadBatchSize;
         int end = std::min(width, start + threadBatchSize);
 
