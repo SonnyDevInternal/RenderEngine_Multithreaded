@@ -2,57 +2,52 @@
 
 //vec 2
 
-void NormalizeInternalVec2(Vector2* vec)
+void NormalizeInternalVec2(Vector2 vec)
 {
-	float x = vec->x;
-	float y = vec->y;
+	float x = vec.x;
+	float y = vec.y;
 
 	float normalizer = std::sqrt((x * x) + (y * y));
 
-	vec->x = x / normalizer;
-	vec->y = y / normalizer;
+	vec.x = x / normalizer;
+	vec.y = y / normalizer;
 }
 
 void Vector2::Normalize()
 {
-	NormalizeInternalVec2(this);
+	NormalizeInternalVec2({x, y});
 }
 
 Vector2 Vector2::Normalize_copy()
 {
 	Vector2 outVal = *this;
 
-	NormalizeInternalVec2(&outVal);
+	NormalizeInternalVec2(outVal);
 
 	return outVal;
 }
 
 //not normalized
-Vector2 Vector2::Direction(Vector2& targetTo)
+Vector2 Vector2::Direction(Vector2 targetTo)
 {
 	return { targetTo.x - x, targetTo.y - y};
 }
 
-//this is if your tryna pass an inline constructed Vector
-Vector2 Vector2::Direction_copyParam(Vector2 targetTo)
+void Vector2::operator=(Vector2 vec)
 {
-	return Vector2(targetTo.x - x, targetTo.y - y);
+	x = vec.x;
+	y = vec.y;
 }
 
-void Vector2::operator=(Vector2* vec)
+void Vector2::operator+=(Vector2 vec)
 {
-	std::memcpy(this, vec, sizeof(Vector2));
+	y += vec.y;
+	x += vec.x;
 }
 
-void Vector2::operator+=(Vector2* vec)
+Vector2 Vector2::operator+(Vector2 vec)
 {
-	this->x += vec->x;
-	this->y += vec->y;
-}
-
-Vector2 Vector2::operator+(Vector2* vec)
-{
-	return Vector2(this->x + vec->x, this->y + vec->y);
+	return Vector2(x + vec.x, y + vec.y);
 }
 
 //vec 3

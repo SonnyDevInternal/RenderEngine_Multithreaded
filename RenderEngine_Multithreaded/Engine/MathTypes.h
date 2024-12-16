@@ -15,12 +15,11 @@ public:
 
 	void Normalize();
 	Vector2 Normalize_copy();
-	Vector2 Direction(Vector2& targetTo);
-	Vector2 Direction_copyParam(Vector2 targetTo);
+	Vector2 Direction(Vector2 targetTo);
 
-	void operator=(Vector2* vec);
-	void operator+=(Vector2* vec);
-	Vector2 operator+(Vector2* vec);
+	void operator=(Vector2 vec);
+	void operator+=(Vector2 vec);
+	Vector2 operator+(Vector2 vec);
 };
 
 
